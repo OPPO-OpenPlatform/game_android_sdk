@@ -1,0 +1,45 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/white">
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:layout_gravity="center"
+	    android:orientation="vertical"
+	    tools:context="com.example.demo.MainActivity" >
+	    <Button 
+	        android:id="@+id/test_pay"
+	        android:layout_width="200dp"
+	        android:layout_height="50dp"
+	        android:layout_marginTop="15dp"
+	        android:text="支付"/>
+	    <Button 
+	        android:id="@+id/test_exit_guid"
+	        android:layout_width="200dp"
+	        android:layout_height="50dp"
+	        android:layout_marginTop="15dp"
+	        android:text="退出引导"/>
+	    	    <Button 
+	        android:id="@+id/test_login"
+	        android:layout_width="200dp"
+	        android:layout_height="50dp"
+	        android:layout_marginTop="15dp"
+	        android:text="登录"/>
+		<Button
+			android:id="@+id/send_custom_role_info"
+			android:layout_width="200dp"
+			android:layout_height="50dp"
+			android:layout_marginTop="15dp"
+			android:text="CP提交玩家角色等信息"/>
+		<Button
+			android:id="@+id/test_Verified"
+			android:layout_width="200dp"
+			android:layout_height="50dp"
+			android:layout_marginTop="15dp"
+			android:text="实名认证防沉迷"/>
+
+	</LinearLayout>
+</ScrollView>
