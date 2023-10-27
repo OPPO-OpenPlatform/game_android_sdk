@@ -1,0 +1,5 @@
+core-1.1.0.aar：
+	sdk需依赖implementation 'androidx.legacy:legacy-support-v4:1.0.0'，如果不方便使用 androidx  v4的，可以用core-1.1.0代替
+	
+signal-log-1.0.1/signal-sdk-1.0.1
+	使用一键成片功能,接入doSendGameScene接口需用到
