@@ -1,16 +1,12 @@
 apply plugin: 'com.android.application'
 
-repositories {
-    flatDir {
-        dirs 'libs'   // aar目录
-    }
-}
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
     defaultConfig {
-        applicationId "com.nearme.onlinesdk.nearme.gamecenter"
+        applicationId "com.nearme.onlinesdk.demo"
         minSdkVersion 21
-        targetSdkVersion 30
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -26,33 +22,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-    }
-}
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+    namespace 'com.nearme.onlinesdk.demo'
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation (name: 'gamesdk-20240302', ext: 'aar')
+    implementation (name: 'gamesdk-common-20240302', ext: 'aar')
+
+    //noinspection GradleDependency
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation (name: 'gamesdk', ext: 'aar')
-    implementation (name: 'gamesdk-common', ext: 'aar')
-    implementation (name: 'signal-sdk-1.0.1', ext: 'aar')
-    implementation (name: 'signal-log-1.0.1', ext: 'aar')
-    implementation 'com.jakewharton.timber:timber:5.0.1'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
