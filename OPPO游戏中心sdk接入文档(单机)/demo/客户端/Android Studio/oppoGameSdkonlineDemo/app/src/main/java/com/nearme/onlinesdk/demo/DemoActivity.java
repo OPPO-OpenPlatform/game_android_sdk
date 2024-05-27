@@ -6,6 +6,7 @@ import java.util.Random;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nearme.game.sdk.CallPaymentManager;
 import com.nearme.game.sdk.GameCenterSDK;
 import com.nearme.game.sdk.callback.ApiCallback;
 import com.nearme.game.sdk.callback.GameExitCallback;
