@@ -32,8 +32,9 @@ repositories {
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation (name: 'gamesdk-20240428', ext: 'aar')
-    implementation (name: 'gamesdk-common-20240428', ext: 'aar')
+    implementation (name: 'gamesdk-20240703', ext: 'aar')
+    implementation (name: 'gamesdk-common-20240703', ext: 'aar')
+    implementation (name: 'gamesdk-protect-1.0.2', ext: 'aar')
 
     //noinspection GradleDependency
     implementation 'androidx.appcompat:appcompat:1.0.2'
