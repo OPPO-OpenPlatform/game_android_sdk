@@ -34,7 +34,7 @@
             android:value="true" />    <!-- 日志开关，发布时候设置为false -->
         <meta-data
             android:name="is_offline_game"
-            android:value="false" />  <!-- true:单机游戏   false:网游 -->
+            android:value="true" />  <!-- true:单机游戏   false:网游 -->
         <meta-data
             android:name="app_key"
             android:value="6u3oehv5dW4Ck40w8WWOC04K4" />

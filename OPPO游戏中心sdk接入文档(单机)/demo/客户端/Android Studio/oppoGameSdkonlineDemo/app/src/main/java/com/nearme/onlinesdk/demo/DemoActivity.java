@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import com.nearme.game.sdk.GameCenterSDK;
 import com.nearme.game.sdk.callback.ApiCallback;
 import com.nearme.game.sdk.callback.GameExitCallback;
+import com.nearme.game.sdk.callback.SinglePayCallback;
 import com.nearme.game.sdk.common.model.ApiResult;
 import com.nearme.game.sdk.common.model.biz.PayInfo;
 import com.nearme.game.sdk.common.model.biz.ReportUserGameInfoParam;
@@ -161,7 +162,12 @@ public class DemoActivity extends Activity {
         payInfo.setProductName("300钻石");
 //		payInfo.setType(PayInfo.TYPE_AUTO_ORDER_ALIPAY);
 
-        GameCenterSDK.getInstance().doPay(this, payInfo, new ApiCallback() {
+        GameCenterSDK.getInstance().doSinglePay(this, payInfo, new SinglePayCallback() {
+
+            @Override
+            public void onCallCarrierPay(PayInfo payInfo, boolean bySelectSMSPay) {
+
+            }
 
             @Override
             public void onSuccess(String resultMsg) {
