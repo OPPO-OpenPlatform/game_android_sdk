@@ -18,10 +18,14 @@ import com.nearme.game.sdk.pay.PayResponse;
 
 import android.app.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import android.os.Handler;
 import android.util.Log;
 
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -36,6 +40,7 @@ public class DemoActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_demo);
+        initPrivacy();
 
         findViewById(R.id.test_Login_activity).setOnClickListener(
                 new View.OnClickListener() {
@@ -272,5 +277,61 @@ public class DemoActivity extends Activity {
         });
     }
 
+    /**
+     *
+     */
+    private void initPrivacy() {
+        if (PrivacyUtil.isPrivacyAgreed(this)) {
+            GameCenterSDK.afterPrivacyAgreed(this);
+            return;
+        }
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("隐私协议");
+        builder.setMessage("游戏隐私协议内容XXXXXXX");
+        builder.setNegativeButton(" 不同意", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(0);
+                    }
+                }, 1000);
+            }
+        });
+
+        builder.setPositiveButton("同意", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                GameCenterSDK.afterPrivacyAgreed(DemoActivity.this);
+                PrivacyUtil.savePrivacyAgreed(DemoActivity.this);
+            }
+        });
+        builder.setCancelable(false);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Log.d("DemoActivity", "onKeyUp()-->KeyEvent.KEYCODE_BACK");
+            GameCenterSDK.getInstance().onExit(this, new GameExitCallback() {
+
+                @Override
+                public void exitGame() {
+                    // CP 实现游戏退出操作，也可以直接调用
+                    // AppUtil工具类里面的实现直接强杀进程~
+                    AppUtil.exitGameProcess(DemoActivity.this);
+
+                }
+            });
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
 }

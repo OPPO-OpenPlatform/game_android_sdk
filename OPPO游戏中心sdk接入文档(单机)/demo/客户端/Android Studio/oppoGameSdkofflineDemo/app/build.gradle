@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "com.nearme.offlineesdk.demo"
+        minSdkVersion 21
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+    }
+    signingConfigs {
+        release{
+            storeFile file("game_sdk_demo.jks")
+
+            storePassword "123456"
+            keyAlias "gameunion"
+            keyPassword "123456"
+
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+	compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    namespace 'com.nearme.offlinesdk.demo'
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation (name: 'gamesdk-6070105-20250722', ext: 'aar')
+    implementation (name: 'gamesdk-common-6070105-20250722', ext: 'aar')
+
+    //noinspection GradleDependency
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+}
